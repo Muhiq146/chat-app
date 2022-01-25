@@ -21,7 +21,6 @@ const Home = () => {
   const [image, setImage] = useState("");
   const [emoji, setEmoji] = useState(false);
   const [messages, setMessages] = useState([]);
-  const [messageDisplay, setMessageDisplay] = useState(true);
 
   const user1 = auth.currentUser.uid;
 
@@ -43,12 +42,12 @@ const Home = () => {
 
   const selectUser = (user) => {
     setChat(user);
-    console.log(user);
+//     console.log(user);
     const user2 = user.uid;
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
     const messageRef = collection(dataBase, "messages", id, "chat");
     const q = query(messageRef, orderBy("createdAt", "asc"));
-    console.log(q);
+//     console.log(q);
     onSnapshot(q, (querySnapshot) => {
       let messages = [];
       querySnapshot.forEach((doc) => {
@@ -58,7 +57,7 @@ const Home = () => {
 
       // }
       setMessages(messages);
-      console.log(messages);
+//       console.log(messages);
     });
   };
 
@@ -110,7 +109,7 @@ const Home = () => {
             <div className="messages_user">
               <h3>{chat.name}</h3>
             </div>
-            {messageDisplay === true && messages.length
+            {messages.length
               ? messages.map((message, i) => (
                 <Message key={i} message={message} user={user1} />
               ))
