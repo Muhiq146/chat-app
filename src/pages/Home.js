@@ -19,6 +19,7 @@ const Home = () => {
   const [chat, setChat] = useState("");
   const [text, setText] = useState("");
   const [image, setImage] = useState("");
+  const [video, setVideo] = useState("");
   const [emoji, setEmoji] = useState(false);
   const [messages, setMessages] = useState([]);
 
@@ -36,28 +37,28 @@ const Home = () => {
       });
       setUsers(users);
     });
-    return () => unsub();
+    return () => {
+      unsub()
+      setText("")
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const selectUser = (user) => {
     setChat(user);
-//     console.log(user);
+    // console.log(user);
     const user2 = user.uid;
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
     const messageRef = collection(dataBase, "messages", id, "chat");
     const q = query(messageRef, orderBy("createdAt", "asc"));
-//     console.log(q);
+    // console.log(q);
     onSnapshot(q, (querySnapshot) => {
       let messages = [];
       querySnapshot.forEach((doc) => {
         messages.push(doc.data());
       });
-      // if (messages[0].) {
-
-      // }
       setMessages(messages);
-//       console.log(messages);
+      // console.log(messages);
     });
   };
 
@@ -68,6 +69,7 @@ const Home = () => {
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
 
     let url;
+    let mt = "";
     if (image) {
       const imageRef = ref(
         storage,
@@ -75,8 +77,20 @@ const Home = () => {
       );
       const snap = await uploadBytes(imageRef, image);
       const imageUrl = await getDownloadURL(ref(storage, snap.ref.fullPath));
+      mt = "image";
       url = imageUrl;
       setImage("");
+    }
+    if (video) {
+      const videoRef = ref(
+        storage,
+        `videos/${new Date().getTime()} - ${video.name}`
+      );
+      const snap = await uploadBytes(videoRef, video);
+      const videoUrl = await getDownloadURL(ref(storage, snap.ref.fullPath));
+      mt = "video";
+      url = videoUrl;
+      setVideo("");
     }
 
     await addDoc(collection(dataBase, "messages", id, "chat"), {
@@ -84,6 +98,7 @@ const Home = () => {
       from: user1,
       to: user2,
       createdAt: Timestamp.fromDate(new Date()),
+      mediaType: mt,
       media: url || "",
     });
     setText("");
@@ -121,6 +136,7 @@ const Home = () => {
               text={text}
               setText={setText}
               setImage={setImage}
+              setVideo={setVideo}
             />
           </>
         ) : (
