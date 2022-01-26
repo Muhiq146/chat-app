@@ -4,7 +4,20 @@ import Emoji from "../svg/Emoji";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
 
-const MessageForm = ({ sendMessage, text, setText, setImage, emoji, setEmoji }) => {
+const MessageForm = ({ sendMessage, text, setText, setImage, setVideo, emoji, setEmoji }) => {
+
+  const media = (e) => {
+    if (e.target.files.length !== 0) {
+      if (e.target.files[0].type.includes("image")) {
+        setImage(e.target.files[0]);
+        // console.log("image");
+      } else {
+        setVideo(e.target.files[0]);
+        // console.log("video");
+      }
+    }
+  }
+
   return (
     <form className="message_form" onSubmit={sendMessage}>
       <label htmlFor="img">
@@ -20,9 +33,8 @@ const MessageForm = ({ sendMessage, text, setText, setImage, emoji, setEmoji }) 
       <input
         type="file"
         id="img"
-        accept="image/*"
         style={{ display: "none" }}
-        onChange={(e) => setImage(e.target.files[0])}
+        onChange={(e) => media(e)}
       />
       <div>
         <input
