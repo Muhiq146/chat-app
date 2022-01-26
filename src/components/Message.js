@@ -14,9 +14,12 @@ const Message = ({ message, user }) => {
       ref={scrollRef}
     >
       <p className={`${message.from === user ? "me" : "friend"}`}>
-        {message.media ? (
-          <img src={`${message.media}`} alt={`${message.text}`} />
-        ) : null}
+        {message.media !== '' ?
+          message.mediaType === "image" ? (
+            <img style={{ height: "200px" }} src={`${message.media}`} alt={`${message.text}`} />
+          ) : <video style={{ width: "300px"}} controls> <source src={`${message.media}`} type="video/mp4"></source></video>
+          : null}
+
         {message.text}
         <br />
         <small>
