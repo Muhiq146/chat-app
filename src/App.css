@@ -31,7 +31,7 @@ nav div a {
   margin-right: 20px;
 }
 
-section {
+.section {
   max-width: 500px;
   margin: 0 auto;
   margin-top: 100px;
@@ -40,13 +40,13 @@ section {
   border-radius: 5px;
 }
 
-section h3 {
+.section h3 {
   text-align: center;
   font-size: 20px;
   color: var(--color-4);
 }
 
-section .form {
+.section .form {
   margin-top: 30px;
   padding: 0px 20px;
 }
@@ -215,10 +215,14 @@ section .form {
 .message_wrapper {
   margin-top: 5px;
   padding: 0px 5px;
-  margin-bottom: 3%;
+  /* margin-bottom: 3%; */
 }
 .message_wrapper img {
   width: 100%;
+  border-radius: 5px;
+}
+.message_wrapper video {
+  /* width: 100%; */
   border-radius: 5px;
 }
 .message_wrapper p {
@@ -237,7 +241,7 @@ section .form {
   text-align: right;
 }
 .me {
-  background: var(--color-3);
+  background: skyblue;
   color: white;
 }
 .friend {
