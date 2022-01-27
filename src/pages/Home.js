@@ -13,6 +13,7 @@ import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import User from "../components/User";
 import MessageForm from "../components/MessageForm";
 import Message from "../components/Message";
+import BackArrow from "../svg/BackArrow";
 
 const Home = () => {
   const [users, setUsers] = useState("");
@@ -49,10 +50,12 @@ const Home = () => {
     // console.log(user);
     const user2 = user.uid;
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
-    const messageRef = collection(dataBase, "messages", id, "chat");
-    const q = query(messageRef, orderBy("createdAt", "asc"));
+    const messageRef = collection(dataBase, "messages");
+    const a = collection(messageRef, id, "chat");
+    const q = query(a, orderBy("createdAt", "asc"));
     // console.log(q);
     onSnapshot(q, (querySnapshot) => {
+      // console.log("🔥🔥🔥");
       let messages = [];
       querySnapshot.forEach((doc) => {
         messages.push(doc.data());
@@ -106,7 +109,7 @@ const Home = () => {
 
   return (
     <div className="home_container">
-      <div className="users_container">
+      <div className={`users_container ${chat ? "users_container_1" : ""}`}>
         {users
           ? users.map((user) => (
             <User
@@ -118,17 +121,20 @@ const Home = () => {
           ))
           : null}
       </div>
-      <div className="message_container">
+      <div className={`message_container ${chat ? "" : "home_container_1"}`}>
         {chat ? (
           <>
             <div className="messages_user">
+              <label onClick={() => setChat("")} className="symbol"><BackArrow /></label>
               <h3>{chat.name}</h3>
             </div>
+
             {messages.length
               ? messages.map((message, i) => (
                 <Message key={i} message={message} user={user1} />
               ))
               : null}
+
             <MessageForm
               setEmoji={setEmoji}
               emoji={emoji}
