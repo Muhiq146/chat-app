@@ -3,6 +3,7 @@ import React from 'react';
 const BackArrow = () => {
     return <div>
         <svg xmlns="http://www.w3.org/2000/svg" style={{
+            position: "fixed",
             width: "25px",
             height: "25px",
             cursor: "pointer",
