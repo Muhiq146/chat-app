@@ -131,12 +131,11 @@ nav div a {
   width: 100vw;
 }
 .users_container {
-  margin-top: 10px;
+  /* margin-top: 10px; */
   border-right: 2px solid var(--color-6);
   overflow-y: auto;
 }
 .user_wrapper {
-  margin-bottom: 10px;
   padding: 10px;
   cursor: pointer;
 }
@@ -173,7 +172,7 @@ nav div a {
   overflow-x: hidden;
   position: relative;
   width: 100%;
-  margin-bottom: 4%;
+  margin-bottom: 45px;
 }
 .messages_user {
   padding: 10px;
@@ -188,7 +187,6 @@ nav div a {
 .message_form {
   position: fixed;
   bottom: 0;
-  margin-bottom: 10px;
   left: 40%;
   width: 100%;
   height: 30px;
@@ -250,14 +248,15 @@ nav div a {
 .selected_user {
   background: var(--color-6);
 }
+.symbol {
+  display: none;
+}
 @media screen and (max-width: 767px) {
-  .home_container {
-    grid-template-columns: 2fr 3fr;
-  }
-  .message_form {
-    left: 3%;
-    right: 0;
-    bottom: 5px;
+  .message_container {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+    /* margin-bottom: 47px; */
   }
   .message_wrapper p {
     max-width: 75%;
@@ -266,10 +265,29 @@ nav div a {
 
 @media screen and (max-width: 576px) {
   .home_container {
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: none;
   }
-  .user_wrapper {
+  .home_container_1 {
     display: none;
+  }
+  .users_container {
+    overflow-y: auto;
+    border-right: none;
+  }
+  .users_container_1 {
+    display: none;
+  }
+  .message_form {
+    position: fixed;
+    bottom: 0;
+    left: 10%;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+  .symbol {
+    display: flex;
   }
   .sm_container {
     padding: 10px 0px;
