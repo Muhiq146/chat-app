@@ -57,7 +57,7 @@ const Profile = () => {
   };
 
   return user ? (
-    <section>
+    <div className="section">
       <div className="profile_container">
         <div className="img_container">
           <img src={user.avatar || defaultImage} alt="Avatar" />
@@ -84,7 +84,7 @@ const Profile = () => {
           <small>Joined on: {user.createdAt.toDate().toDateString()}</small>
         </div>
       </div>
-    </section>
+    </div>
   ) : null;
 };
 
