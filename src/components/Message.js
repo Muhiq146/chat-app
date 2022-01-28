@@ -16,15 +16,14 @@ const Message = ({ message, user }) => {
       <p className={`${message.from === user ? "me" : "friend"}`}>
         {message.media !== '' ?
           message.mediaType === "image" ? (
-            <img style={{ height: "200px" }} src={`${message.media}`} alt={`${message.text}`} />
-          ) : <video style={{ width: "300px"}} controls> <source src={`${message.media}`} type="video/mp4"></source></video>
+            <img src={`${message.media}`} alt={`${message.text}`} />
+          ) : <video controls> <source src={`${message.media}`} type="video/mp4"></source></video>
           : null}
 
         {message.text}
         <br />
         <small>
           <Moment fromNow>{message.createdAt.toDate()}</Moment>
-          {/* {message.createdAt.toDate().toDateString()} */}
         </small>
       </p>
     </div>
