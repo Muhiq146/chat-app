@@ -216,11 +216,12 @@ nav div a {
   /* margin-bottom: 3%; */
 }
 .message_wrapper img {
+  height: 200px;
   width: 100%;
   border-radius: 5px;
 }
 .message_wrapper video {
-  /* width: 100%; */
+  width: 300px;
   border-radius: 5px;
 }
 .message_wrapper p {
@@ -261,6 +262,11 @@ nav div a {
   .message_wrapper p {
     max-width: 75%;
   }
+  .message_wrapper img {
+    height: 170px;
+    width: 100%;
+    border-radius: 5px;
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -286,8 +292,17 @@ nav div a {
     display: flex;
     align-items: center;
   }
+  .message_wrapper img {
+    height: 140px;
+    width: 100%;
+    border-radius: 5px;
+  }
   .symbol {
     display: flex;
+    position: fixed;
+  }
+  .emoji {
+    display: none;
   }
   .sm_container {
     padding: 10px 0px;
