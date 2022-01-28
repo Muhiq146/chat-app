@@ -23,7 +23,7 @@ const MessageForm = ({ sendMessage, text, setText, setImage, setVideo, emoji, se
       <label htmlFor="img">
         <Attachment />
       </label>
-      <label htmlFor="emoji" onClick={() => { emoji === true ? setEmoji(false) : setEmoji(true) }}>
+      <label className="emoji" htmlFor="emoji" onClick={() => { emoji === true ? setEmoji(false) : setEmoji(true) }}>
         <Emoji />
       </label>
       {emoji &&
